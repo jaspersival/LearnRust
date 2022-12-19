@@ -17,7 +17,16 @@ fn main() {
         stdin
             .read_line(&mut user_input)
             .expect("Failed to read input");
-        let number = user_input.trim().parse::<u8>().unwrap();
+        let number = match user_input.trim().parse::<u8>() {
+            Ok(number) => number,
+            Err(err) => {
+                eprintln!(
+                    "Error {}, the given value should be a positive integer",
+                    err
+                );
+                continue;
+            }
+        };
 
         if number > 100 {
             eprintln!("Error, the given value {} is greater than 100.", number);
