@@ -10,7 +10,9 @@ use std::io;
 fn main() {
     let mut rng = rand::thread_rng();
     let winning_num = rng.gen_range(1..=100);
+    let mut number_of_tries = 0;
     loop {
+        number_of_tries += 1;
         println!("Guess a number between 0 and 100");
         let mut user_input = String::new();
         let stdin = io::stdin();
@@ -42,4 +44,5 @@ fn main() {
             }
         }
     }
+    println!("Number of tries are: {}", number_of_tries);
 }
